@@ -1,0 +1,29 @@
+<mat-card class="mat-elevation-z8" style="margin: 15px;">
+  <mat-card-header>
+    <mat-card-title>Meine Aufgabe</mat-card-title>
+  </mat-card-header>
+  <br>
+  <mat-card-content>
+    <form (ngSubmit)="editPlan()" [formGroup]="editForm">
+
+      <mat-form-field>
+        <mat-label>Beschreibung *</mat-label>
+        <textarea formControlName="task" matInput name="task" placeholder="Z.b. Einkauf erledigen"></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Enddatum</mat-label>
+        <input [matDatepicker]="picker" formControlName="due" matInput>
+        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <mat-checkbox color="primary" formControlName="finished">erledigt</mat-checkbox>
+
+      <div style="margin-top: 40px">
+        <button [routerLink]="['/tasks']" mat-button>zurück</button>
+        <button [disabled]="!this.editForm.valid" color="primary" mat-raised-button type="submit">speichern</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

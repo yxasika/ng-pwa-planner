@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Neue Aufgabe</h1>
+<div mat-dialog-content>
+  <p>Was ist dein Ziel?</p>
+  <br>
+  <form (ngSubmit)="createPlan()" [formGroup]="planForm">
+    <mat-form-field>
+      <mat-label>Beschreibung *</mat-label>
+      <textarea formControlName="task" matInput name="task" placeholder="Z.b. Einkauf erledigen"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Enddatum</mat-label>
+      <input [matDatepicker]="picker" formControlName="due" matInput>
+      <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button (click)="closeModal()" mat-button type="button">zurück</button>
+  <button (click)="createPlan()" [disabled]="!planForm.valid" color="primary" mat-raised-button type="submit">
+    speichern
+  </button>
+</div>
+

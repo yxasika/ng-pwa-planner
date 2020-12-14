@@ -1,0 +1,50 @@
+<mat-card *ngIf="dataSource.data.length; else noData" class="mat-elevation-z8"
+          style="margin: 15px;">
+  <mat-card-header>
+    <mat-card-title>Alle Aufgaben</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <table (matSortChange)="sortData($event)" [dataSource]="dataSource" mat-table matSort style="width: 100%">
+      <ng-container matColumnDef="finished">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="finished">Erledigt</th>
+        <td *matCellDef="let element; let i = index" mat-cell>
+          <mat-checkbox (change)="finishTask($event.checked, element.id)" [checked]="element.finished || false"
+                        color="primary"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="text">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="text">Beschreibung</th>
+        <td *matCellDef="let element" mat-cell> {{element.task || 'Keine Beschreibung hinterlegt!'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="due">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="due">Enddatum</th>
+        <td *matCellDef="let element"
+            mat-cell> {{(element.due | date : 'd.MM.yyyy') || 'Kein Enddatum festgelegt!'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th *matHeaderCellDef mat-header-cell>Bearbeiten</th>
+        <td *matCellDef="let element" mat-cell>
+          <button mat-button>
+            <mat-icon [routerLink]="[element.id]">edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let rows; columns: displayedColumns;" mat-row></tr>
+    </table>
+
+  </mat-card-content>
+</mat-card>
+
+<ng-template #noData>
+  <h2 class="full-view-text">Erstelle deine erste Aufgabe! ✍</h2>
+</ng-template>
+
+<button (click)="openModal()" class="planner-fab" color="primary" mat-fab>
+  <mat-icon>add</mat-icon>
+</button>

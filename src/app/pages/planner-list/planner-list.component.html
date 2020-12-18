@@ -28,8 +28,8 @@
       <ng-container matColumnDef="actions">
         <th *matHeaderCellDef mat-header-cell>Bearbeiten</th>
         <td *matCellDef="let element" mat-cell>
-          <button mat-button>
-            <mat-icon [routerLink]="[element.id]">edit</mat-icon>
+          <button mat-button [routerLink]="[element.id]">
+            <mat-icon>edit</mat-icon>
           </button>
         </td>
       </ng-container>

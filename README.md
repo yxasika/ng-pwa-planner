@@ -6,22 +6,18 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Local PWA deployment
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+First run `ng build --prod` to build a production level version of this application including the service-worker (needed for an installable pwa).
+The build artifacts will be stored in the `dist/` directory.
 
-## Running end-to-end tests
+For the deployment, you can use any installed webserver like `serve` for example.
+To install `serve`, run `npm install serve --dev` (you can install it globally with the `-g` flag).
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+After the installation-process completed,
+run `serve dist/planner` to serve the web assets. Now you can visit and install the resulting pwa on `http://localhost:5000/` or the path specified at console output
+(be sure to use the `localhost:*` path instead of the explicit ip-address, otherwise the app won't be installable in browser).

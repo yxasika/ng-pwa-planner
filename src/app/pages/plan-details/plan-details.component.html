@@ -20,9 +20,9 @@
       <br>
       <mat-checkbox color="primary" formControlName="finished">erledigt</mat-checkbox>
 
-      <div style="margin-top: 40px">
+      <div style="margin-top: 40px; display: flex">
         <button [routerLink]="['/tasks']" mat-button>zurück</button>
-        <button [disabled]="!this.editForm.valid" color="primary" mat-raised-button type="submit">speichern</button>
+        <button style="margin-left: 15px" [disabled]="!this.editForm.valid" color="primary" mat-raised-button type="submit">speichern</button>
       </div>
     </form>
   </mat-card-content>
